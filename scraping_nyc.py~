@@ -1,0 +1,11 @@
+import requests
+import lxml.html
+
+r = requests.get("https://nycopendata.socrata.com/")
+html = lxml.html.fromstring(r.text)
+links = html.xpath("//a/@href")
+data = []
+for link in links:
+    if "data" in link:
+        data.append(link)
+print data

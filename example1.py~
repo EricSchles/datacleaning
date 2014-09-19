@@ -1,0 +1,12 @@
+import requests
+import lxml.html
+import unidecode
+
+class Scraper:
+    def __init__(self,url):
+        self.url = url
+        self.text = self.grab(self.url)
+    def grab(self):
+        r = requests.get(url)
+        text = unidecode.unidecode(r.text)
+        return text
