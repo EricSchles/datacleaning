@@ -1,0 +1,44 @@
+class Character:
+    def __init__(self,name="Eric",sword=None,shield=None,backpack=None):
+        self.name = name
+        self.sword = sword
+        self.shield = shield
+        self.backpack = backpack
+    def attack(self):
+        if self.sword:
+            return self.sword.power
+        else:
+            return 1
+    def defend(self):
+        if self.shield:
+            return self.shield.defense
+        else:
+            return None
+    def items(self):
+        if self.backpack:
+            return self.backpack.items
+        else:
+            return None
+
+class Sword:
+    def __init__(self,power=2,name="basic"):
+        self.damage = damage
+        self.name = name
+    
+class Shield:
+    def __init__(self,defense=1,name="basic"):
+        self.defense = defense
+        self.name = name
+
+if __name__ = '__main__':
+    name = str(raw_input("what's your name?"))
+    Me = Character(name)
+    print "Hello, "+ Me.name +",here you are in the world.  Oh look you found a sword, what do you do?"
+    print "1.Pick it up"
+    print "2.Do nothing"
+    print "3.Why is there a sword here?"
+    print "4.exit"
+
+    action = int(raw_input("> "))
+    if action == 1:
+        
