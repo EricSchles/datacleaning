@@ -24,7 +24,7 @@ class Character:
 
 class Sword:
     def __init__(self,power=2,name="basic"):
-        self.damage = damage
+        self.power = power
         self.name = name
     
 class Shield:
@@ -32,7 +32,7 @@ class Shield:
         self.defense = defense
         self.name = name
 
-if __name__ = '__main__':
+if __name__ == '__main__':
     name = str(raw_input("what's your name?"))
     Me = Character(name)
     time.sleep(2)
@@ -50,7 +50,7 @@ if __name__ = '__main__':
     if action == 1:
         Me.sword = Sword(4,"flame sword")
         time.sleep(2)
-        print "congradulations, you got" + Me.sword.name
+        print "congradulations, you got " + Me.sword.name
     elif action == 2:
         print "what's wrong with you?  Are you dead?  Not again!"
         sys.exit()
@@ -60,7 +60,7 @@ if __name__ = '__main__':
         print "Seriously?! That's what you say to a sweet sword?!?!  You are taking it and liking it."
         time.sleep(2)
         Me.sword = Sword(50,"Rage sword")
-        print "congradulations, you got" + Me.sword.name
+        print "congradulations, you got " + Me.sword.name
     elif action == 4:
         sys.exit()
     else:

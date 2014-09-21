@@ -1,0 +1,5 @@
+open("thing.txt","w") #writing to a file - will erase contents from the file if it exists!!! use with caution!!!
+open("thing.txt","r") #reading from a file
+open("thing.txt","wb") #writing to a file as binary - used for writing to pdfs and things like this
+open("thing.txt","rb") #reading from a binary file
+open("thing.txt","a+") #adds to a file

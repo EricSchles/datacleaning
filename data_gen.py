@@ -1,5 +1,5 @@
-#exercise 1
 import random
+import os
 
 def exercise1():
     container = []
@@ -129,17 +129,17 @@ def exercise6():
     for i in xrange(1000):
         date = []
         if i%3 == 0:
-            date.append(day_th[random.randint(0,len(day_th))])
-            date.append(months_abbrev[random.randint(0,len(months_abbrev))])
-            date.append(year[random.randint(0,len(year))])
+            date.append(day_th[random.randint(0,len(day_th)-1)])
+            date.append(months_abbrev[random.randint(0,len(months_abbrev)-1)])
+            date.append(year[random.randint(0,len(year)-1)])
         if i%5 == 0:
-            date.append(day[random.randint(0,len(day))])
-            date.append(months_abbrev[random.randint(0,len(months_abbrev))])
-            date.append(year[random.randint(0,len(year))])
+            date.append(day[random.randint(0,len(day)-1)])
+            date.append(months_abbrev[random.randint(0,len(months_abbrev)-1)])
+            date.append(year[random.randint(0,len(year)-1)])
         if i%2 == 0:
-            date.append(day_th[random.randint(0,len(day_th))])
-            date.append(months_abbrev_dec[random.randint(0,len(months_abbrev_dec))])
-            date.append(year[random.randint(0,len(year))])
+            date.append(day_th[random.randint(0,len(day_th)-1)])
+            date.append(months_abbrev_dec[random.randint(0,len(months_abbrev_dec)-1)])
+            date.append(year[random.randint(0,len(year)-1)])
         final_date = " ".join(date)
         container.append(final_date)
     with open("exercise6.csv","w") as f:
@@ -150,14 +150,17 @@ def exercise6():
 def exercise7():
     container = []
     for i in xrange(30):
-        for i in xrange(9):
-            thing = []
-            num = str(random.randint(0,10))
+        thing = []
+        for j in xrange(10):
+            num = str(random.randint(1,9))
             thing.append(num)
         if i%3 == 0:
-            number = ".".join(thing)
+            thing.insert(3,".")
+            thing.insert(7,".")
         elif i%2 == 0:
-            number = "-".join(thing)
+            thing.insert(3,"-")
+            thing.insert(7,"-")
+        number = "".join(thing)
         container.append(number)
     with open("exercise7.csv","w") as f:
         for i in container:
@@ -221,6 +224,9 @@ def exercise9():
 
 
 if __name__=='__main__':
+    if not os.path.isdir("data/"):
+        os.mkdir("data")
+    os.chdir("data")
     exercise1()
     exercise2()
     exercise3()
@@ -228,3 +234,6 @@ if __name__=='__main__':
     exercise5()
     exercise6()
     exercise7()
+    exercise8()
+    exercise9()
+    os.chdir("../")
