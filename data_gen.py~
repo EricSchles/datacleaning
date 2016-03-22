@@ -1,5 +1,5 @@
-#exercise 1
 import random
+import os
 
 def exercise1():
     container = []
@@ -129,17 +129,17 @@ def exercise6():
     for i in xrange(1000):
         date = []
         if i%3 == 0:
-            date.append(day_th[random.randint(0,len(day_th))])
-            date.append(months_abbrev[random.randint(0,len(months_abbrev))])
-            date.append(year[random.randint(0,len(year))])
+            date.append(day_th[random.randint(0,len(day_th)-1)])
+            date.append(months_abbrev[random.randint(0,len(months_abbrev)-1)])
+            date.append(year[random.randint(0,len(year)-1)])
         if i%5 == 0:
-            date.append(day[random.randint(0,len(day))])
-            date.append(months_abbrev[random.randint(0,len(months_abbrev))])
-            date.append(year[random.randint(0,len(year))])
+            date.append(day[random.randint(0,len(day)-1)])
+            date.append(months_abbrev[random.randint(0,len(months_abbrev)-1)])
+            date.append(year[random.randint(0,len(year)-1)])
         if i%2 == 0:
-            date.append(day_th[random.randint(0,len(day_th))])
-            date.append(months_abbrev_dec[random.randint(0,len(months_abbrev_dec))])
-            date.append(year[random.randint(0,len(year))])
+            date.append(day_th[random.randint(0,len(day_th)-1)])
+            date.append(months_abbrev_dec[random.randint(0,len(months_abbrev_dec)-1)])
+            date.append(year[random.randint(0,len(year)-1)])
         final_date = " ".join(date)
         container.append(final_date)
     with open("exercise6.csv","w") as f:
@@ -150,25 +150,83 @@ def exercise6():
 def exercise7():
     container = []
     for i in xrange(30):
-        for i in xrange(9):
-            thing = []
-            num = str(random.randint(0,10))
+        thing = []
+        for j in xrange(10):
+            num = str(random.randint(1,9))
             thing.append(num)
         if i%3 == 0:
-            number = ".".join(thing)
+            thing.insert(3,".")
+            thing.insert(7,".")
         elif i%2 == 0:
-            number = "-".join(thing)
+            thing.insert(3,"-")
+            thing.insert(7,"-")
+        number = "".join(thing)
         container.append(number)
     with open("exercise7.csv","w") as f:
         for i in container:
             f.write(str(i)+"\n")
 
 def exercise8():
-    container = []
+    
     names = ['Laveta', 'Lawerence', 'Deeanna', 'Starr', 'Tyron', 'Dionne', 'Sheryl', 'Tamela', 'Kelle', 'Delena', 'Chelsea', 'Angel', 'Shara', 'Waneta', 'Blaine', 'Jeannie', 'Shirley', 'Isidro', 'Kathie', 'Damon', 'Brigette', 'Hana', 'Lanita', 'Mozell', 'Becki', 'Shakita', 'Cierra', 'Marian', 'Lorilee', 'Cathrine', 'Tressie', 'Cecilia', 'Claretha', 'Shea', 'Yajaira', 'Carline', 'Orlando', 'Elidia', 'Lisha', 'Rafael', 'Trey', 'Sherie', 'Marita', 'Jenell', 'Maye', 'Tessa', 'Karen', 'Adriana', 'Yesenia', 'Rebecka']
-    #rules = 
-                
+    rules = [{"l":"k"},{"e":"r"},{"j":"q"},{"m":"r"},{"r":"t"},{"d":"t"},{"y":"e"},{"c":"h"},{"n":"d"},{"t":"r"},{"i":"er"},{"a":"e"}]
+    new_names = []
+    for name in names:
+        new_name = []
+        for indx,letter in enumerate(name):
+            rule = rules[random.randint(0,len(rules)-1)]
+            if letter in rule.keys():
+                new_name.append(rule[letter])
+            else:
+                if indx%3==0:
+                    num = ord(letter)
+                    if num < 119:
+                        num += 3
+                    else:
+                        num -= 3
+                    new_letter = chr(num)
+                    new_name.append(new_letter)
+                else:
+                    new_name.append(letter)
+        transformed = "".join(new_name)
+        new_names.append(transformed)
+    with open("exercise8.csv","w") as f:
+        for name in new_names:
+            f.write(str(name)+"\n")
+
+def exercise9():
+    
+    names = ['Laveta', 'Lawerence', 'Deeanna', 'Starr', 'Tyron', 'Dionne', 'Sheryl', 'Tamela', 'Kelle', 'Delena', 'Chelsea', 'Angel', 'Shara', 'Waneta', 'Blaine', 'Jeannie', 'Shirley', 'Isidro', 'Kathie', 'Damon', 'Brigette', 'Hana', 'Lanita', 'Mozell', 'Becki', 'Shakita', 'Cierra', 'Marian', 'Lorilee', 'Cathrine', 'Tressie', 'Cecilia', 'Claretha', 'Shea', 'Yajaira', 'Carline', 'Orlando', 'Elidia', 'Lisha', 'Rafael', 'Trey', 'Sherie', 'Marita', 'Jenell', 'Maye', 'Tessa', 'Karen', 'Adriana', 'Yesenia', 'Rebecka']
+    rules = [{"l":"k"},{"e":"r"},{"j":"q"},{"m":"r"},{"r":"t"},{"d":"t"},{"y":"e"},{"c":"h"},{"n":"d"},{"t":"r"},{"i":"er"},{"a":"e"},{"b":"o"},{"e":"a"},{"s":"v"}]
+    new_names = []
+    for name in names:
+        new_name = []
+        for indx,letter in enumerate(name):
+            rule = rules[random.randint(0,len(rules)-1)]
+            if letter in rule.keys():
+                new_name.append(rule[letter])
+            else:
+                if indx%3==0:
+                    num = ord(letter)
+                    if num < 119:
+                        num += 3
+                    else:
+                        num -= 3
+                    new_letter = chr(num)
+                    new_name.append(new_letter)
+                else:
+                    new_name.append(letter)
+        transformed = "".join(new_name)
+        new_names.append(transformed)
+    with open("exercise9.csv","w") as f:
+        for name in new_names:
+            f.write(str(name)+"\n")
+
+
 if __name__=='__main__':
+    if not os.path.isdir("data/"):
+        os.mkdir("data")
+    os.chdir("data")
     exercise1()
     exercise2()
     exercise3()
@@ -176,3 +234,6 @@ if __name__=='__main__':
     exercise5()
     exercise6()
     exercise7()
+    exercise8()
+    exercise9()
+    os.chdir("../")

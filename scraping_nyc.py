@@ -4,16 +4,16 @@ import grequests
 
 def get_all_data():
     urls = [
-        "https://nycopendata.socrata.com/data?cat=city%20government",
-        "https://nycopendata.socrata.com/data?cat=business",
-        "https://nycopendata.socrata.com/data?cat=education",
-        "https://nycopendata.socrata.com/data?cat=environment",
-        "https://nycopendata.socrata.com/data?cat=health",
-        "https://nycopendata.socrata.com/data?cat=housing%20%26%20development",
-        "https://nycopendata.socrata.com/data?cat=public%20safety",
-        "https://nycopendata.socrata.com/data?cat=recreation",
-        "https://nycopendata.socrata.com/data?cat=social%20services","https://nycopendata.socrata.com/data?cat=transportation",
-        "https://nycopendata.socrata.com/data?cat=NYC%20BigApps"
+        "https://nycopendata.socrata.com/data?cat=city%20government"#,
+    #    "https://nycopendata.socrata.com/data?cat=business",
+    #    "https://nycopendata.socrata.com/data?cat=education",
+    #    "https://nycopendata.socrata.com/data?cat=environment",
+    #    "https://nycopendata.socrata.com/data?cat=health",
+    #    "https://nycopendata.socrata.com/data?cat=housing%20%26%20development",
+    #    "https://nycopendata.socrata.com/data?cat=public%20safety",
+    #    "https://nycopendata.socrata.com/data?cat=recreation",
+    #    "https://nycopendata.socrata.com/data?cat=social%20services","https://nycopendata.socrata.com/data?cat=transportation",
+    #    "https://nycopendata.socrata.com/data?cat=NYC%20BigApps"
     ]
     data = []
     rs = (grequests.get(u) for u in urls)
@@ -25,7 +25,9 @@ def get_all_data():
         for link in links:
             if "data" in link:
                 data.append(link)
-    return data_links
+    return data
+
+
 
 def save_all_pdfs(links):
     final = []
@@ -53,3 +55,5 @@ def save_all_pdfs(links):
             r = requests.get(pdf)
             f.write(r.content)
     
+if __name__ == '__main__':
+    print get_all_data()
